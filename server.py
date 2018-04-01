@@ -7,7 +7,7 @@ app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 def process(item):
-    return {"title": item["title"], "content": item["content"]}
+    return {"title": item["title"], "content": item["content"], "time": item["time"]}
 
 @app.route("/news")
 @cache.cached(timeout=300)
