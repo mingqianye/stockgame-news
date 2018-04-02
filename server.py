@@ -2,13 +2,17 @@ from flask import Flask, jsonify
 from flask_caching import Cache
 import tushare as ts
 import sys, os
+import dateutil
 
-os.environ['TZ'] = 'Asia/Shanghai'
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
+def to_iso8601(ts):
+    return dateutil.parser.parse(ts).isoformat()
+
 def process(item):
-    return {"title": item["title"], "content": item["content"], "time": item["time"]}
+    return {"title": item["title"], "content": item["content"], "time": to_iso8601(item["time"])}
+
 
 @app.route("/news")
 @cache.cached(timeout=300)
