@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
 from flask_caching import Cache
 import tushare as ts
-import sys
+import sys, os
 
+os.environ['TZ'] = 'Asia/Shanghai'
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
