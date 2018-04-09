@@ -17,7 +17,7 @@ def process(item):
 
 
 @app.route("/news")
-@cache.cached(timeout=600)
+@cache.cached(timeout=1000)
 def hello():
     app.logger.info("Connecting to Tushare...")
     result = ts.get_latest_news(top=50,show_content=True).to_dict('records')
