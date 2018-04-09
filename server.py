@@ -1,11 +1,13 @@
 from flask import Flask, jsonify
 from flask_caching import Cache
+from flask_compress import Compress
 import tushare as ts
 import sys, os
 import dateutil
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+Compress(app)
 
 def to_iso8601(ts):
     return dateutil.parser.parse(ts).isoformat()

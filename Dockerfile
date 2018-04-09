@@ -5,7 +5,7 @@ FROM amancevice/pandas:0.22.0-python3-alpine
 
 RUN apk update && apk add bash py3-pip build-base libxml2-dev libxslt-dev
 RUN pip3 install --upgrade pip lxml requests bs4
-RUN pip3 install tushare flask flask-caching python-dateutil
+RUN pip3 install tushare flask flask-caching python-dateutil flask-compress
 
 COPY server.py .
 EXPOSE 5000
