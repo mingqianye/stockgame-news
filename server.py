@@ -15,8 +15,9 @@ def process(item):
 
 
 @app.route("/news")
-@cache.cached(timeout=300)
+@cache.cached(timeout=600)
 def hello():
+    app.logger.info("Connecting to Tushare...")
     result = ts.get_latest_news(top=50,show_content=True).to_dict('records')
     return jsonify({"news": list(map(process, result))})
 
