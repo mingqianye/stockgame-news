@@ -20,7 +20,7 @@ def process(item):
 @cache.cached(timeout=1000)
 def hello():
     app.logger.info("Connecting to Tushare...")
-    result = ts.get_latest_news(top=50,show_content=True).to_dict('records')
+    result = ts.get_latest_news(top=30,show_content=True).to_dict('records')
     return jsonify({"news": list(map(process, result))})
 
 
